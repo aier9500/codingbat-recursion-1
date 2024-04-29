@@ -1,10 +1,3 @@
-/** 
- * Given n of 1 or more, return the factorial of n, which is n * (n-1) * (n-2) ... 1. Compute the result recursively (without loops).
- * factorial(1) → 1
- * factorial(2) → 2
- * factorial(3) → 6
- */
-
 public class S26Recursion3_WuE { 
 
     public int factorial(int n) {
@@ -97,6 +90,93 @@ public class S26Recursion3_WuE {
 
         else return countX(str.substring(1, str.length())); 
     }    
+
+    public int countHi(String str) {
+        
+        if (str.length() < 2) return 0; 
+
+        else if (str.length() > 2) { 
+            
+            if (str.substring(0, 2).equals("hi")) return 1 + countHi(str.substring(1, str.length()));
+
+            else return countHi(str.substring(1, str.length()));
+        }
+        
+        else if (str.equals("hi")) return 1; 
+
+        else return 0; 
+    }      
+
+    public String changeXY(String str) {
+        
+        if (str.length() == 0) return "";
+
+        else if (str.length() > 1 && str.substring(0, 1).equals("x")) return "y" + changeXY(str.substring(1, str.length())); 
+
+        else if (str.length() > 1) return str.substring(0, 1) + changeXY(str.substring(1, str.length())); 
+
+        else if (str.substring(0, 1).equals("x")) return "y"; 
+
+        else return str.substring(0, 1); 
+    }    
+    
+    public String changePi(String str) {
+
+        if (str.length() < 2) return str; 
+
+        else if (str.substring(0, 2).equals("pi")) return "3.14" + changePi(str.substring(2));
+
+        else return str.substring(0, 1) + changePi(str.substring(1)); 
+    }    
+
+    public String noX(String str) {
+
+        if (str.length() == 0) return ""; 
+
+        else if (str.length() == 1 && str.substring(0, 1).equals("x")) return ""; 
+
+        else if (str.length() == 1) return str; 
+
+        else if (str.substring(0, 1).equals("x")) return noX(str.substring(1));
+
+        else return str.substring(0, 1) + noX(str.substring(1));
+    }
+
+    public boolean array6(int[] nums, int index) {
+        
+        if (nums.length == index) return false; 
+
+        else if (nums[index] == 6) return true; 
+
+        else return array6(nums, index + 1);
+    }
+
+    public int array11(int[] nums, int index) {
+
+        if (nums.length == index) return 0; 
+
+        else if (nums[index] == 11) return 1 + array11(nums, index + 1); 
+
+        else return 0 + array11(nums, index + 1); 
+    }
+    
+    public boolean array220(int[] nums, int index) {
+
+        if (nums.length - index < 2) return false; 
+
+        else if (nums[index] * 10 == nums[index + 1]) return true; 
+
+        else return array220(nums, index + 1); 
+    }    
+
+    public String allStar(String str) {
+
+        if (str.length() == 0) return ""; 
+
+        else if (str.length() > 1) return str.substring(0, 1) + "*" + allStar(str.substring(1)); 
+
+        else return str; 
+    }
 }
 
 
@@ -117,6 +197,9 @@ class Tester {
 
         int sumD = obj.sumDigits(12345);
         System.out.println(sumD);
-        
+
+        int[] arr = {1 ,2 ,3 ,4 ,5 ,6}; 
+        boolean six = obj.array6(arr, 0);
+        System.out.println(six); 
     }
 }
